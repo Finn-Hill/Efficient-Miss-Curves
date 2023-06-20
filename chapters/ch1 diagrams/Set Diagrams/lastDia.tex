@@ -1,0 +1,122 @@
+\begin{figure}
+    \centering
+    \caption{Combined figure of how the different associativity of caches can store requests with the cache structure in Figure 2.5}
+    \label{fig:my_label}
+\begin{tikzpicture}
+
+
+\node[draw, minimum width=15mm, minimum height=10mm,label=above:0x0010](reqs) {
+    \begin{tikzpicture}
+        \node[draw, minimum width=8mm, minimum height=6mm, label=above:FA] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set, label=above:2SA] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid,, label=above:DM] (tag) {\xmark};
+        
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\checkmark};
+
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+        
+    \end{tikzpicture}
+};
+
+\node[minimum width=10mm, minimum height=10mm, below = 1 cm of block](block2) {
+};
+
+
+
+\node[draw, minimum width=15mm, left = 3cm of reqs, minimum height=10mm,label=above:0x251B](reqs2) {
+    \begin{tikzpicture}
+        \node[draw, minimum width=8mm, minimum height=6mm, label=above:FA] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set, label=above:2SA] (valid) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid,, label=above:DM] (tag) {\checkmark};
+        
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+     \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+     \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+\node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+\node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+
+        
+    \end{tikzpicture}
+};
+
+
+\node[minimum width=10mm, minimum height=10mm, left = 3cm of block2](block3) {
+};
+
+\node[draw, minimum width=15mm, left = 3cm of reqs2, minimum height=10mm,label=above:0xFF0F](reqs3) {
+    \begin{tikzpicture}        \node[draw, minimum width=8mm, minimum height=6mm, label=above:FA] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set, label=above:2SA] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid,, label=above:DM] (tag) {\xmark};
+        
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\xmark};
+
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =0cm of set] (valid) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {\checkmark};
+        
+    \end{tikzpicture}
+};
+\end{tikzpicture}
+\end{figure}

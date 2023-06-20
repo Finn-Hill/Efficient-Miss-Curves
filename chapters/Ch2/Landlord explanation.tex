@@ -1,0 +1,30 @@
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+
+
+
+
+    \begin{algorithm}
+\caption{Landlord}\label{euclid}
+    \begin{algorithmic}[1]
+    \BState \emph{loop}:
+        \State $\textit{Item} \gets \text{nextItem in trace}$
+        \If {$\textit{Item} \text{ not in Cache}$}
+            \While{$\text{Cache can't contain Item}$}
+                \State $x \gets y\in cache \text{ with } min(\frac{cost(y)}{size(y)})$
+                    \State $\Delta \gets \frac{credit(x)}{size(x)}$
+                    \ForEach {$f \in cache $}
+                        \State $credit(f) \gets credit(f) - \Delta \times size(f)$
+                    \EndFor
+                    \State $\exists f, credit(f)=0,\text{ Evict(f)} $        \EndWhile
+            \State $credit(Item) \gets cost(Item)$
+        \Else 
+         \State $credit(i) \gets \text{value between current credit and cost}$
+        \EndIf
+    \end{algorithmic}
+\end{algorithm}
+
+

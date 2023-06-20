@@ -1,0 +1,17 @@
+
+\begin{algorithm}
+\caption{Sum Cost Priority}\label{euclid}
+    \begin{algorithmic}[1]
+        \BState \emph{loop}:
+            \State $\textit{Item} \gets \text{nextItem in trace}$
+            \ForEach {$f \in cache $}
+                    \State $priority(f) \gets priority(f) - cost(i)$
+            \EndFor
+            \If {$\textit{Item}(i) \text{not in Cache}$}
+                    \State $\text{Evict} \min priority(f)$
+            \EndIf
+            \State $priority(Item) \textbf{ }= \textbf{ }cost(Item)$
+    \end{algorithmic}
+\end{algorithm}
+
+

@@ -1,0 +1,49 @@
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}{Definition}[section]
+\begin{lemma}
+An SCP cache(k)$\subseteq$ cache(k+1). \\ Let
+$cache(k)$ be a cache of size k and let $cache(k+1)$ be cache of size k+1 \\
+
+\textbf{Base Case:}
+Both $cache(k)$ and $cache(k+1)$ start out with empty caches as defined in the abstract caching problem. This means that until either cache makes an eviction
+\[cache(k) \subseteq cache(k+1)\]
+\\
+\textbf{n case}
+Suppose that at time t, which is a point after both caches are full, the size of items in $cache(k) = k$ and the size of items in $cache(k+1)=k+1$ and that $cache(k) \subseteq cache(k+1)$
+Then access item $i_{t+1}$ at time $t+1$
+This creates 3 cases:\\
+\textbf{Case 1:}
+\[i_{t+1} \in cache(k)\] \[cache(k) \subseteq cache(k+1)\] $i_{t+1}$ also is in cache(k+1)
+Since $i_{t+1}$ exists in both caches, no evictions occur as the item is a hit on both caches
+
+\textbf{Case 2:}
+\[i_{t+1} \in cache(k+1)\text{, but } i_{t+1} \notin cache(k)\]
+Since $i_{t+1}$ exists in only cache(k+1), the possible items in cache(k) at time t+1 are
+\[(cache_{t}(k) \cup i_{t+1}) \subseteq cache_{t+1}(k+1)\]
+as since $i \in cache(k+1)$ at time t+1, $cache(k) \cup i_{t+1}$ must equal cache(k+1) as cache(k) is a subset at time t and the only newly accessed item is $i_{t+1}$. This means that cache(k+1) does not change its eviction decisions due to cache(k) eviction decisions.  
+
+\textbf{Case 3:}
+\[i_{t+1} \notin cache(k+1), and i{t+1} \notin cache(k)\]
+Since $i_{t+1}$ exists in neither cache(k+1) or cache(k) at time t, an item must be evicted from cache(k+1). \\ \\
+Let $i_a$ be the minimum priority item of cache(k+1) at time t and $i_b$ be the minimum priority item of cache(k) at time t.\\
+There are 2 possible cases for items $i_a$ and $i_b$, either $i_a$=$i_b$, meaning that both these items have the same priority, or $i_a \neq$ $i_b$, meaning that $i_a$ priority is not the same as $i_b$.\\
+
+\textbf{Case 3a:}
+\[i_a=i_b\]
+This means there is only one possible item list for caches k and k+1 at t+1
+
+\[cache_{t+1}(k+1) =  (cache_{t}(k+1)\cup i_{t+1}) / i_a \]
+\[cache_{t+1}(k) =  (cache_{t}(k)\cup i_{t+1}) / i_b \]
+
+by applying  
+\[(cache_{t}(k) \cup i_{t+1}) \subseteq cache_{t+1}(k+1)\]
+ we can show that they both evict the same item at t+1 \\
+
+ \textbf{Case 3b:}
+\[i_a \neq i_b\]
+This means that $i_a \notin cache(k)$ as this would mean that $i_b$ is not the item with the least priority in as that would be contradictory. This then means that evicting $i_a$ will keep cache(k)$\subseteq$ cache(k+1) \\ \\ \\
+
+These cases then prove that SCP is in fact a stack algorithm as cache(k)$\subseteq$ cache(k+1) no matter what items are requested $\qed$
+\end{lemma}

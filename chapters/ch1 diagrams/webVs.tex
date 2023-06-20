@@ -1,0 +1,21 @@
+\begin{figure}[h]
+    \centering
+    \caption{Web cache structure vs Processor structure}
+    \label{fig:my_label}
+    \begin{tikzpicture}
+        \draw (-1.5,0) node[minimum height=0cm] (l1) {User}
+        (2,0) node[minimum width=1cm, minimum height = 1cm](l2) {Caching proxy}
+        (6,0) node[minimum width=3cm,minimum height = 3cm](mem) {web server}
+        (-0.3,0.5) node[minimum width=3cm,minimum height = 3cm](req) {request}
+        (-0.3,-0.5) node[minimum width=3cm,minimum height = 3cm](res) {response};
+        \draw[thick,<->] (l1) -- (l2);
+        \draw[thick,<->](l2) -- (mem);
+         \draw (-2,2) node[minimum height=0cm] (r1) {Processor}
+        (1.5,2) node[minimum width=1cm, minimum height = 0cm](r2) {L1 cache}
+        (5.5,2) node[minimum width=3cm,minimum height = 0cm](mem3) {L2 cache}
+        (8,2) node[minimum width=3cm,minimum height = 0cm](mem2) {Memory};
+        \draw[thick,->] (r1) -- (r2);
+        \draw[thick,->](r2) -- (mem3);
+        \draw[thick,->](mem2) -- (mem3);
+    \end{tikzpicture}
+\end{figure}

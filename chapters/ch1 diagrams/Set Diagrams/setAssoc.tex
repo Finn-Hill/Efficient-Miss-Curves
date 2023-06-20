@@ -1,0 +1,56 @@
+\begin{figure}[H]
+    \centering
+    \caption{Structure of a fully associative cache}
+    \label{fig:my_label}
+\begin{tikzpicture}
+\node[draw, minimum width=15mm, minimum height=10mm](block) {
+\begin{tikzpicture}
+\node[draw, minimum width=8mm, minimum height=6mm,above= 0mm, right =-\pgflinewidth, label=above:valid] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm, right=-\pgflinewidth of valid,, label=above:tag] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm, right=-\pgflinewidth of tag, label=above:data] (data) {empty};
+\node[draw, minimum width=8mm, minimum height=6mm,below= 0mm of valid] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm, right=-\pgflinewidth of tag] (data) {empty};
+\node[draw, minimum width=8mm, minimum height=6mm,below= 0mm of valid] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm, right=-\pgflinewidth of tag] (data) {empty};
+\node[draw, minimum width=8mm, minimum height=6mm,below= 0mm of valid] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm, right=-\pgflinewidth of tag] (data) {empty};
+\node[draw, minimum width=8mm, minimum height=6mm,below= 0mm of valid] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm, right=-\pgflinewidth of tag] (data) {empty};
+\node[draw, minimum width=8mm, minimum height=6mm,below= 0mm of valid] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm, right=-\pgflinewidth of tag] (data) {empty};
+\node[draw, minimum width=8mm, minimum height=6mm,below= 0mm of valid] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm, right=-\pgflinewidth of tag] (data) {empty};
+\node[draw, minimum width=8mm, minimum height=6mm,below= 0mm of valid] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm, right=-\pgflinewidth of valid] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm, right=-\pgflinewidth of tag] (data) {empty};
+
+\end{tikzpicture}
+};
+
+
+\node[draw, minimum width=15mm, right = 0cm of block, minimum height=10mm,label=above:0x0010](reqs) {
+    \begin{tikzpicture}
+        \node[draw, minimum width=8mm, minimum height=6mm, label=above:FA] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+    \end{tikzpicture}
+};
+
+
+
+
+
+
+\end{tikzpicture}
+\end{figure}

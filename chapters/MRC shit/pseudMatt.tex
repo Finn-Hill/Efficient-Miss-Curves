@@ -1,0 +1,29 @@
+\begin{algorithm}
+    \caption{Mattson for LRU}\label{euclid}
+        \begin{algorithmic}[1]
+            \State $trace = \{i_0 ... i_n \}$
+            \For{$x \text{ in range}(0,n) $}
+                \State $last\_ Reference = \infty$ \Comment{If an item hasn't been seen before it has $\infty$ priority}
+                \For{$z \text{ in range}(x,0) \text{ We go backward in the trace} $}
+                    \If {$trace[z] ==trace[x]$} \Comment{trace[x] refers to the item requested}
+                        \State $last\_ Reference = z$ \Comment{Update as we have seen the item }
+                        \State $\text{Leave Loop}$
+                    \EndIf
+                \EndFor
+                \State $unique\_ Items = \{\}$
+                \If{$last\_ Reference \neq \infty$}
+                \For{$b \text{ in range}(last\_ Reference,x) $}
+                    \If {$trace[b] \text{ not in } unique\_ Items$}
+                        \State $\text{push } trace[b] \text{ onto }unique\_ Items$
+                    \EndIf
+                \EndFor
+                \State $Distance = \text{number of items in } unique\_ Items$
+                \For{$a \text{ in range}(1,Distance) $}
+                    \State $\text{Cost Paid by $cache(a)$}  += cost(trace[x])$ \Comment{cache of size a}
+                \EndFor
+                \Else 
+                    \State $\text{Cost Paid by all cache sizes }  += cost(trace[x])$
+                \EndIf
+            \EndFor
+        \end{algorithmic}
+\end{algorithm}

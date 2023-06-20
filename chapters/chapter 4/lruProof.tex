@@ -1,0 +1,19 @@
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}{Definition}[section]
+\begin{lemma}
+    LRUs $cache(k) \subseteq cache(k+1)$
+\end{lemma}
+LRU always evicts $f_{minPriority} \in cache(LRU)$ when item $i_n$ is requested and cache(LRU) can't contain size($i_n$). Now looking at cache(k+1) after request $i_n$, we know that 
+
+\[cache(k+1) = \{i_{n-(k+1)},..., i_n \} \]
+then look at cache k after request $i_n$
+\[cache(k) = \{i_{(n-k)},..., i_{n} \} \]
+
+Then, at request $i_n$
+\[cache(k) \subseteq cache(k+1)\]
+
+Using \ref{pythagorean} when cache(k) received request $i_{n-1}$ it evicted $i_{n-(k+2)}$ while cache(k+1) evicted $i_{n-(k+1)}$. This shows that  
+\[\forall i_n, \textbf{ } cache(k) \subseteq cache(k+1) \]
+$\qed$

@@ -1,0 +1,13 @@
+\begin{figure}[h]
+    \centering
+    \caption{An example file retrieval}
+    \label{fig:my_label}
+    \begin{tikzpicture}
+         \draw (0,-1.5) node[minimum height=0cm] (l1) {}
+        (1.5,1.5) node[minimum width=1cm, minimum height = 0cm](l2) {}
+        (-1.5,1.5) node[minimum width=1cm, minimum height = 0cm](bot) {}
+        (0,0) node[minimum width=3cm,minimum height = 3cm,draw](mem) {Mem};
+        \draw[thick,->] (bot) -- (l1);
+        \draw[thick,->](l1) -- (l2);
+    \end{tikzpicture}
+\end{figure}

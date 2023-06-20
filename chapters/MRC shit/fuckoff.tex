@@ -1,0 +1,9 @@
+\begin{algorithm}
+    \caption{Generalized Mattson's for any algorithm}\label{euclid}
+        \begin{algorithmic}[1]
+\State Starting at the beginning of the trace, read the item requests in order and create a priority list of items that starts empty. 
+\State For each request, ensure the list is ordered from the item with the highest priority to the item with the lowest priority. 
+\State If the item being requested isn't in the priority list, add it to the list with the priority the algorithm assigns and increase the cost paid by all cache sizes by the cost of the item being requested, and move to the next request 
+\State Otherwise the item is in the list. Starting from the priority list's beginning, locate the position of the item being requested. As you search for the item, add up the sizes of all items encountered until you find the item being requested. Call this total size d. Then increase the cost paid by all caches of sizes less than d then move to the next request.
+\end{algorithmic}
+\end{algorithm}

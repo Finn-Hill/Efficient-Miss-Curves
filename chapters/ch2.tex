@@ -1,0 +1,57 @@
+
+%Make this its chapter 
+
+\chapter{Processor Caches}
+
+In this paper, we will be explaining caches through the lens of a processor cache. Most processor caches have three main levels, the L1 cache, being the smallest, the L2 cache, and the L3 cache.
+
+
+When the processor requests data, it first checks the L1 cache. If the data is in the cache, it is retrieved from there, and the processor can continue processing. If not, the computer checks the L2 cache. If it is not retrieved, it repeats the process again for the L3 cache and either retrieves the data, or it must go to its original location in the memory. Each of these levels has an ever-increasing cost of retrieval, so making sure the items are in the L1 cache as often as possible is important to keep systems running efficiently. 
+
+
+From Chapter 1 we know that looking at the entire system is not always helpful, so instead we will be looking at the individual level of the cache system.
+A processor cache is organized into sets where data blocks can be stored.
+Each of these sets can contain singular or multiple cache lines. Each cache line can store a data block and has associated metadata. In the cache line, there is an offset pointing to a location in the data block. This metadata is a tag that is used as an identifier for data and additional metadata that is used by the cache controller to manage the cache line.
+
+\input{thesistemplate_2020-04-24/chapters/ch1 diagrams/CacheLine}
+
+
+When a cache receives a request, which is a memory location, it must decode what that request is for. To do this, it breaks the request into the offset, set, and tag. The offset starts at the least significant bit and points to a specific location in the data block. Next, the cache uses the set bits to determine which set this data block can be put in. The remaining bits are the tag, which is used as an identifier. Each cache line also has an associated valid bit to identify the data block's validity.
+
+After breaking these requests into their parts, the cache must insert the data block into the correct location if it is not already there. To do this, it strips the set bits from the request and uses it to locate the set within the cache in which the data block can be put. Then, it checks the tag of each line in the set to see if the data block is already in one of the set's cache lines because blocks can be in the same cache line. If the data is not in the cache, then the cache must evict if full.
+
+
+
+\section{Associativity of Caches}
+Associativity in caches affects the number of elements per set in the cache. Caches with high associativity have fewer sets while caches with low associativity have more sets. The three kinds of cache associativity in caches are fully associative, set-associative, and direct-mapped. What kind of associativity a cache has is important to system performance. This is through two main factors: One, every additional cache line in a set causes an increased time to search when an item is requested. And two, when there are too few lines in a set, evictions occur more often which causes a time penalty as items must continually be retrieved from memory.
+
+
+
+\subsection{Fully-Associative Cache}
+
+A fully associative cache is a type of cache organization where the entire cache is one set, meaning that any data block can be stored in any cache line. This approach allows for maximum flexibility in cache organization because any available cache line can store an incoming data block, making efficient use of cache space.
+
+\input{thesistemplate_2020-04-24/chapters/ch1 diagrams/Set Diagrams/setAssoc}
+This organization comes with the cost that every cache line must be searched when trying to find the data block in the cache. This increased number of searches results in longer access times than other cache memory organizations.
+
+\subsection{Direct-Mapped Cache}
+
+In a direct-mapped cache, every cache line is its own set. When a cache receives a request, it can quickly check the corresponding cache line to see if the data block is already present. This approach allows for fast cache look-ups because there is only one possible location where a given data block can be stored in the cache.
+\input{thesistemplate_2020-04-24/chapters/ch1 diagrams/Set Diagrams/dirM}
+
+This simplicity makes direct-mapped caches efficient, but they can suffer from a problem known as thrashing. This is where different data blocks map to the same cache line repeatedly, causing frequent cache misses and degrading performance. 
+
+\subsection{Set-Associative Cache}
+
+An x-way set associative cache is a type of cache memory organization that falls between the direct-mapped and fully associative approaches. In set-associative caching, a cache line is part of a set, with each set containing multiple cache lines. When a request is made, its associated data block is stored in one of the cache lines within the corresponding set. The set bits determine which set the request maps to and then search for an empty line within that set. If no empty lines are available, the cache controller selects one of the existing lines within the set to replace.
+
+
+\input{thesistemplate_2020-04-24/chapters/ch1 diagrams/Set Diagrams/2wayAssoc}
+Set-associative caching offers a middle ground between fully associative and direct mapped caching, where a 1-way set is a direct mapped cache and k-way is a fully associative cache. This gives it flexibility as the entire cache doesn't need to be searched for every request, but it can still struggle with thrashing.
+
+\section{Decoding Explanation}
+Figure 2.5 shows how a processor deals with a request to an address called 0xABCD. This example shows how the address is decomposed, the cache is searched, and eviction is performed to make space to load the data block.
+
+\input{thesistemplate_2020-04-24/chapters/ch1 diagrams/Set Diagrams/Handling}
+As can be seen in Figure 2.5, when a cache receives a request: First it breaks the requests into their binary representation. Then it uses the $\log_2(\text{block size})$ to find the number of offset bits, ensuring the remaining bits are used for the tag. Once this decoding is complete, the cache stores the data.
+\input{thesistemplate_2020-04-24/chapters/ch1 diagrams/Set Diagrams/lastDia}

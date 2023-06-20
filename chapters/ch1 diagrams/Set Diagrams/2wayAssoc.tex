@@ -1,0 +1,55 @@
+\begin{figure}[H]
+    \centering
+    \caption{Structure of a 2-way set associative cache}
+    \label{fig:my_label}
+\begin{tikzpicture}
+\node[draw, minimum width=15mm, minimum height=10mm](block) {
+\begin{tikzpicture}
+\node[draw, minimum width=8mm, minimum height=6mm, label=above:set] (set) {0};
+\node[draw, minimum width=8mm, minimum height=6mm,above= 0mm of set, right =.8cm of set,, label=above:valid] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm, right=-\pgflinewidth of valid,, label=above:tag] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm, right=-\pgflinewidth of tag, label=above:data] (data) {empty};
+\node[draw, minimum width=8mm, minimum height=6mm, below= 0mm of set] (set) {0};
+\node[draw, minimum width=8mm, minimum height=6mm, right =.8cm of set] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of valid] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of tag] (data) {empty};
+\node[draw, minimum width=8mm, minimum height=6mm, below= 0mm of set] (set) {1};
+\node[draw, minimum width=8mm, minimum height=6mm, right = 0.8cm of set] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of valid] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of tag] (data) {empty};\node[draw, minimum width=8mm, minimum height=6mm, below= 0mm of set] (set) {1};
+\node[draw, minimum width=8mm, minimum height=6mm, right =.8cm of set] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of valid] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of tag] (data) {empty};\node[draw, minimum width=8mm, minimum height=6mm, below= 0mm of set] (set) {2};
+\node[draw, minimum width=8mm, minimum height=6mm, right =0.8cm of set] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of valid] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of tag] (data) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of tag] (data) {empty};\node[draw, minimum width=8mm, minimum height=6mm, below= 0mm of set] (set) {2};
+\node[draw, minimum width=8mm, minimum height=6mm, right =0.8cm of set] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of valid] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of tag] (data) {empty};
+\node[draw, minimum width=8mm, minimum height=6mm, below= 0mm of set] (set) {3};
+\node[draw, minimum width=8mm, minimum height=6mm, right =.8cm of set] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of valid] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of tag] (data) {empty};
+\node[draw, minimum width=8mm, minimum height=6mm, below= 0mm of set] (set) {3};
+\node[draw, minimum width=8mm, minimum height=6mm, right =.8cm of set] (valid) {0};
+\node[draw, minimum width=20mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of valid] (tag) {empty};
+\node[draw, minimum width=40mm, minimum height=5mm,below= 0mm of set, right=-\pgflinewidth of tag] (data) {empty};
+\end{tikzpicture}
+};
+
+\node[draw, minimum width=15mm, right = 0cm of block, minimum height=10mm,label=above:0xDB1F](reqs) {
+    \begin{tikzpicture}
+        \node[draw, minimum width=8mm, minimum height=6mm, label=above:2-SA] (set) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\checkmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\xmark};
+        \node[draw, minimum width=8mm, minimum height=6mm, below = 0mm of set] (set) {\xmark};
+    \end{tikzpicture}
+};
+
+\end{tikzpicture}
+\end{figure}

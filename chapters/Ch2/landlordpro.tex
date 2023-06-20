@@ -1,0 +1,142 @@
+\begin{figure}[h]
+    \centering
+    \caption{Landlord's Performance on a trace}
+    \label{fig:my_label}
+Given cache size 3 and the trace: A,B,C,D,B,C,C,B with item costs 40,4,8,2 and size 1
+\begin{tikzpicture}
+\node[rounded corners, draw=black,label=above:Priorities, minimum width=5 cm](pri1) at (-8,0){
+\begin{tikzpicture}
+\node[rounded corners, draw=black, minimum width = 1cm](he){
+a $=$ 40
+};
+\end{tikzpicture}
+};
+\node[rounded corners, text width = 4cm, left = 0 cm of pri1]{
+Item a is given its cost as priority since space in cache
+};
+
+\node[rounded corners, draw=black, minimum width=5 cm](pri2) at (-8,-2.5){
+\begin{tikzpicture}
+\node[rounded corners, draw=black, minimum width = 1cm](he1){
+a $=$ 36
+};
+\node[rounded corners, draw=black, minimum width = 1cm, left = .3cm of he1](he2){
+b $=$ 4
+};
+\end{tikzpicture}
+
+};
+\node[rounded corners, text width = 4cm, left = 0 cm of pri2]{
+Item b is given its cost as priority since space in cache, decrease A
+};
+
+
+\node[rounded corners, draw=black, minimum width=5 cm](pri3) at (-8,-5.2){
+\begin{tikzpicture}
+\node[rounded corners, draw=black, minimum width = 1cm](he1){
+a $=$ 32
+};
+\node[rounded corners, draw=black, minimum width = 1cm, left = .3cm of he1](he2){
+b $=$ 0
+};
+\node[rounded corners, draw=black, minimum width = 1cm, left = .3cm of he2](he3){
+c $=$ 8
+};
+\end{tikzpicture}
+
+};
+\node[rounded corners, text width = 4cm, left = 0 cm of pri3]{
+Item c is given its cost as priority since space in cache, decrease A and B
+};
+
+\node[rounded corners, draw=black, minimum width=5 cm](pri4) at (-8,-7.4){
+\begin{tikzpicture}
+\node[rounded corners, draw=black, minimum width = 1cm](he1){
+d $=$ 2
+};
+\node[rounded corners, draw=black, minimum width = 1cm, left = .3cm of he1](he2){
+a $=$ 30
+};
+\node[rounded corners, draw=black, minimum width = 1cm, left = .3cm of he2](he3){
+c $=$ 4
+};
+\end{tikzpicture}
+
+
+};
+\node[rounded corners, text width = 4cm, left = 0 cm of pri4]{
+no room for d, items in cache have priority decreased by $\Delta$ and B evicted
+};
+
+\node[rounded corners, draw=black, minimum width=5 cm](pri5) at (-8,-10){
+\begin{tikzpicture}
+\node[rounded corners, draw=black, minimum width = 1cm](he1){
+b $=$ 4
+};
+\node[rounded corners, draw=black, minimum width = 1cm, left = .3cm of he1](he2){
+a $=$ 26
+};
+\node[rounded corners, draw=black, minimum width = 1cm, left = .3cm of he2](he3){
+c $=$ 0
+};
+\end{tikzpicture}
+
+};
+
+\node[rounded corners, text width = 4cm, left = 0 cm of pri5]{
+B credit reset and others decreased by $\Delta$
+};
+
+\node[rounded corners, draw=black, minimum width=5 cm](pri6) at (-8,-12.3){
+\begin{tikzpicture}
+\node[rounded corners, draw=black, minimum width = 1cm, left = .3cm of he1](he2){
+a $=$ 18
+};
+\node[rounded corners, draw=black, minimum width = 1cm, left = .3cm of he2](he3){
+c $=$ 8
+};
+\end{tikzpicture}
+
+};
+\node[rounded corners, text width = 4cm, left = 0 cm of pri6]{
+C credit reset and others decreased by $\Delta$
+};
+
+
+\node[rounded corners, draw=black, minimum width=5 cm](pri7) at (-8,-15){
+\begin{tikzpicture}
+\node[rounded corners, draw=black, minimum width = 1cm](he2){
+a $=$ 10
+};
+\node[rounded corners, draw=black, minimum width = 1cm, left = .3cm of he2](he3){
+c $=$ 8
+};
+\end{tikzpicture}
+
+};
+\node[rounded corners, text width = 4cm, left = 0 cm of pri7]{
+C credit reset and others decreased by $\Delta$
+};
+
+
+\node[rounded corners, draw=black, minimum width=5 cm](pri8) at (-8,-17.2){
+\begin{tikzpicture}
+\node[rounded corners, draw=black, minimum width = 1cm](he1){
+b $=$ 4
+};
+\node[rounded corners, draw=black, minimum width = 1cm, left = .3cm of he1](he2){
+a $=$ 6
+};
+\node[rounded corners, draw=black, minimum width = 1cm, left = .3cm of he2](he3){
+c $=$ 8
+};
+\end{tikzpicture}
+};
+\node[rounded corners, text width = 4cm, left = 0 cm of pri8]{
+B credit reset and others decreased by $\Delta$
+};
+ 
+\end{tikzpicture}
+   
+
+\end{figure}

@@ -1,0 +1,14 @@
+\begin{figure}[h]
+    \centering
+    \caption{An example Cache Line}
+    \label{fig:my_label}
+    \begin{tikzpicture}
+        \node[draw, minimum width=3mm, minimum height=3mm](block) {
+        \begin{tikzpicture}
+            \node[draw, minimum width=8mm, minimum height=6mm,above= 0mm, right =-\pgflinewidth, label=above:valid] (valid) {0};
+            \node[draw, minimum width=20mm, minimum height=5mm, right=-\pgflinewidth of valid,, label=above:tag] (tag) {empty};
+            \node[draw, minimum width=40mm, minimum height=5mm, right=-\pgflinewidth of tag, label=above:data] (data) {empty};
+        \end{tikzpicture}
+        };
+    \end{tikzpicture}
+\end{figure}

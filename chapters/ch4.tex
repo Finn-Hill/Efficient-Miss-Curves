@@ -1,0 +1,64 @@
+\chapter{Cost Curves}
+\section{Cost Curves}
+Cost curves are graphs that depict the relationship between cache size and the cost of items missed by a cache on a trace using a specific algorithm. MRCs are commonly used to evaluate caching algorithms' performance and determine the optimal cache size for a particular system.
+
+The curve typically shows a decreasing cost as the cache size increases, indicating, intuitively, that larger caches are more effective at reducing the number of cache misses. However, the curve will eventually reach a point of diminishing returns, where increasing the cache size further does not significantly reduce the mass ratio. This is because the first instance of any item will never be in the cache so they will always miss and cause a performance decrease.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5, trim={.2cm 2.6cm 2.1cm 2.4cm},clip]{thesistemplate_2020-04-24/chapters/MRC shit/mrcFinal.png}
+    \caption{Generic MRC}
+    \label{fig:my_label}
+\end{figure}
+
+Figure 4.1 shows a generalization of what MRCs look like. If a section of the cost curve is almost flat, the cache size is either too large, meaning it misses too little and isn't an efficient use of space, or is too small and isn't gaining the system any efficiency as it misses too often. When designers are creating a cache for a system, they look at this curve and attempt to balance the cost and size to create a cache that improves the system without creating an unnecessary layer of memory.
+
+
+The naive way to generate these MRCs is to simulate a trace $\sigma$ on all cache sizes with a given algorithm. This requires a large amount of computational effort, as most algorithms when having differing cache sizes make separate choices as to what to evict. An improvement on this method is to only simulate a subset of all cache sizes, but this too is still computationally expensive. There is an important exception to this computationally heavy generation of MRCs, which is to use an algorithm created by \cite{mattson1970evaluation} which allows the generation of an MRC with one pass of the trace $\sigma$.
+
+\section{Mattson's Algorithm}
+
+As stated, the generation of MRCs through running an algorithm on all cache sizes is computationally expensive. Instead, we use an algorithm invented by \cite{mattson1970evaluation} which allows for this generation of MRCs using only $O(nm)$ time where $n$ is the trace length and $m$ is the number of items. Shown here is Mattson's algorithm for LRU in the paging model.
+
+
+\input{thesistemplate_2020-04-24/chapters/MRC shit/pseudMatt}
+
+%You don't mention distinctness when you calculate distance, and even if you did, that would still be LRU's stack distance. It's not even accurate for SCP.
+
+When an item $i$ is requested, the number of unique items since the last access is calculated, which is called distance. This distance tells us that all caches with sizes greater than or equal to this number hit on this item as they contain the item in their cache due to LRUs structure. Then all caches with a size less than this number miss on this item and pay its cost as they are too small to still contain the item. In other caching models, when calculating if an item would still be in the cache, you must factor in the size of unique items between repeat requests to the same item, not just the distance in the trace of these requests. 
+
+Here is a generalized version of Mattsons Algorithm
+%\input{thesistemplate_2020-04-24/chapters/MRC shit/genpseMat}
+\input{thesistemplate_2020-04-24/chapters/MRC shit/fuckoff}
+
+
+Using this generalized version, you can see that Mattsons algorithm keeps a priority list of all items which is ordered from highest to lowest priority. If an item isn't in this list, all caches must miss and pay its cost. If an item is then in this list, the size of items with priorities greater than the current request's priority is calculated. For all caches that have a size less than this number, they miss and must pay a cost. Then the priorities of all items are updated and reordered, an important note is that some algorithms may not change the priority of an item. This happens in LRU when there are repeated requests to a unique item between requests to the current item, so the item's priorities aren't updated.  
+This updating scheme then allows 1 pass of a trace to check all size caches as each request allows the updating of all cache's paid costs. This approach requires that it is limited to a subset of caching algorithms called stack algorithms. 
+
+\subsection{Stack Algorithms}
+
+Stack algorithms are a class of algorithms where: $cache(k) \subseteq cache(k+1)$. This means that all items in $cache(k)$ exist in $cache(k+1)$. This is important as most caching algorithms don't have this structure, this is because their decisions as to what to evict often depend on the size of the cache and the items inside it.
+
+%use diagrams
+\input{thesistemplate_2020-04-24/chapters/MRC shit/stackAlgo}
+%\input{thesistemplate_2020-04-24/chapters/MRC shit/kvsk1}
+
+Figure 4.2 shows a stack algorithm's cache states. As can be seen $\forall x < k, \text{ } cache(x) \subseteq cache(k)$. Showing an algorithm follows this rule on any trace is sufficient to prove it is a stack algorithm.  
+
+%talk about this being the ordering of items, requesting particular items, this thing called stack distance
+Looking back to LRU in Chapter 3, we show here that it is a stack algorithm. The proof for this is quite simple, as LRUs structure is based upon the item's last reference from the current request in the trace. So cache(k) $\subseteq$ cache(k+1) as
+%\input{thesistemplate_2020-04-24/chapters/chapter 4/lruProof}
+when needing to evict an element, $cache(k)$ evicts the $k+1$ least referenced item, which is quite obviously still in $cache(k+1)$.
+
+
+When looking at a trace of items for LRU, such as in Figure 4.2, it is important to note the number of items between requests for the same unique item. This number is called the stack distance and is what Mattson's algorithm uses to decide if an item is a hit or miss on a specific cache size for LRU. When this distance is greater than the size of the cache, the request causes a miss, but if the distance is less than the size of the cache the request is a hit. For algorithms other than LRU, this distance that Mattson's algorithm uses is a number of items in higher priority order, not the number of unique items between requests.
+
+Now that there is the context for why Mattson's algorithm functions to generate an MRC, here is an example of how it manages to correctly show the cost for LRU on a trace.
+\input{thesistemplate_2020-04-24/chapters/MRC shit/mattDia}
+Figure 4.3 shows the priority of elements in an LRU cache on a trace. This priority queue is mimicked by Mattson's algorithm as the queue position of the item in its stack distance.
+\input{thesistemplate_2020-04-24/chapters/MRC shit/mattCompare}
+
+As can be seen in Figure 4.4, $C$ is requested at timestep 2, and then again at timestep 6. After timestep 6 $C \in cache(4)$ but was evicted to make room for $D$ in a $cache(3)$. This example then shows how LRU assigns its item priorities based on distance from the last request and how Mattson's algorithm manages to get the correct costs for these caches.
+
+An important thing to note is that the priority stemming from distance since the 
+last request is how LRU maintains its priority list. Stack algorithms don't necessarily have to organize their priority from the stack distance itself, instead, the priorities can be some function of cost, size, or distance.

@@ -1,0 +1,38 @@
+
+\begin{algorithm}
+    \caption{Generalized Mattson's for any algorithm}\label{euclid}
+        \begin{algorithmic}[1]
+            \State $trace = \{i_0 ... i_n \}$
+            \State $unique\_ Item\_ Priorities = \{\}$
+            \State $unique\_ Items = \{\}$
+            \For{$x \text{ in range}(0,n) $}\Comment{trace[x] refers to the item}
+                \State $priority = \text{Priority the algorithm assigns to item $trace[x]$ when it is requested}$
+                \If {$trace[x] \text{ not in } unique\_ Items$}
+                    \State $\text{push } [trace[x],priority] \text{ onto }unique\_ Item\_ Priorities$
+                     \State $\text{push } trace[x] \text{ onto }unique\_ Items$
+                     \State $\text{Cost Paid by all caches } += cost(trace[x])$
+                \Else 
+                    \State $size\_Items = 0$
+                    \For{$d$ in range $(0,$ (items in $unique\_Item\_ Priorities)$)}
+                        \State $size\_ Items+= size(unique\_Item\_ Priorities[d][0])$ \Comment{[d][0] is an item}
+                        \If{$unique\_Item\_ Priorities[d][0] == trace[x]$}
+                            \State $\text{Cost Paid by all caches of size $<$ $size\_ Items$ } += cost(trace[x])$
+                            \State $unique\_Item\_ Priorities[d][1] = priority$             \Comment{update trace[x] priority}
+                        \EndIf
+                    \EndFor
+                \EndIf
+                \For{$c \text{ in } unique\_ Item \_Priorities$}
+                    \State $currentPriority = c[1]$ \Comment{Which is the current Priority of item c[0]} 
+                    \State $change\_ In\_ Priority = 0$             \Comment{An algorithm can choose to alter priority}
+                    \If{$\text{request }trace[x]\text{ causes priority change }$}
+                        \State $priorityChange =\text{ Priority change of item $c[0]$ from request $trace[x]$}$
+                    \EndIf
+                    \State $c[1] = currentPriority - newPriority$
+                \EndFor
+                \State $\text{Reorder $unique\_ Item\_ Priorities$ so item's ordering}$
+                \State$\text{in $unique\_ Item\_ Priorities$ goes from highest to lowest priority}$
+            \EndFor
+        \end{algorithmic}
+\end{algorithm}
+
+

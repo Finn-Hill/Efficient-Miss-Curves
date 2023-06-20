@@ -1,0 +1,15 @@
+%iN THIS NEW PARAGRAPH WE ARE MAKING ABOUT LAYERS, THE DIAGRAM SHOULD HAVE MULTIPLE LAYERS BEING ABSTRACTED AWAY AND THEN USE PROCESSOR CACHE 
+
+\begin{figure}
+    \centering
+    \caption{An example of how caches are structured}
+    \label{fig:my_label}
+    \begin{tikzpicture}[every node/.style={draw}]
+        \draw (0,0) node[minimum height=0cm,draw] (l1) {L1}
+        (2,0) node[minimum width=1cm, minimum height = 1cm,draw](l2) {L2}
+        (5,0) node[minimum width=3cm,minimum height = 3cm,draw](mem) {Mem};
+        \draw[thick,->] (l1) -- (l2);
+        \draw[thick,->](l2) -- (mem);
+        
+    \end{tikzpicture}
+\end{figure}

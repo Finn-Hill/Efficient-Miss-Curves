@@ -1,0 +1,21 @@
+
+
+
+How do computers efficiently store data and access it quickly? 
+
+
+This problem is at the core of caching in computer systems. The issue with fast data retrieval on computers is that the larger the storage, the slower is it to retrieve data from it. So to make computers run faster, computers mimic large and fast storage. They do this by having ever-decreasing size storage levels called caches, which are smaller and faster than main memory. These caches store a subset of the memory that the computer has access to.
+
+There is an inherent challenge with this system, and that is that instead of having one level of memory with all the data, there are now multiple levels that must be searched.
+
+
+This search starts in the lowest level, which is small and fast, then if the information isn't there must search the next level. This search process continues until the data is found. Every miss causes a further time penalty as each subsequent layer is slower than the last. The way one attempts to minimize these time penalties is with caching algorithms.
+
+An analytical tool that can be used to display these algorithms' performance on sets of requests is called a Miss Ratio Curve (MRC). 
+These MRCs are useful because they show how an algorithm performs with different cache sizes on a set of requests. Though one issue with MRCs is that to create these miss ratios for all cache sizes, an algorithm must be run on all these cache sizes. This repeated calculation of miss ratios takes a lot of computational effort. A solution to this large computational work was proposed by Mattson, which then allows for MRCs to be generated in one pass on a trace, but is limited to traces with items having the same size and cost. 
+
+
+
+Our work expands this efficient generation of MRCs by making it no longer necessary for items to have the same cost. We do this through the use of an algorithm called Sum Cost Priority (SCP). SCP performs within $\pm$5\% on 65.07\% of traces when compared to a provably well-performing algorithm called Landlord.
+
+In Chapter 1 we focus on what caching is, why it is important in modern systems, and present a model for the problem. In Chapter 2, we show how processor caches function to give a better understanding of hardware caches. In Chapter 3, we explain caching algorithms and how to compare their performance. In Chapter 4, we explain how MRCs are generated efficiently. In Chapter 5 we explain how we expand MRCs with SCP and we analyze the theoretical and real performance of SCP.
